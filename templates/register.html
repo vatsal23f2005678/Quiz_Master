@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Please register</h2>
+    <form action="/register" method="POST">
+        <label>Email:</label> <input type="email" name="email" required><br>
+        <label>Password:</label> <input type="password" name="password" required><br>
+        <label>Full Name:</label> <input type="text" name="full_name" required><br>
+        <label>Qualification:</label> <input type="text" name="qualification"><br>
+        <label>Date of Birth:</label> <input type="date" name="dob"><br>
+        <label>Register as Admin:</label> <input type="checkbox" name="is_admin">
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

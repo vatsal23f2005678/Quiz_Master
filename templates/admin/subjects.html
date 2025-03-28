@@ -1,0 +1,22 @@
+<h2>Manage Subjects</h2>
+
+<form method="POST" action="{{ url_for('admin.add_subject') }}">
+    <input type="text" name="name" placeholder="write the name of your subject" required>
+    <button type="submit">Add Subject name</button>
+</form>
+
+<ul>
+    {% for subject in subjects %}
+    <li>
+        {{ subject.name }}
+        <form method="POST" action="{{ url_for('admin.edit_subject', subject_id=subject.id) }}">
+            <input type="text" name="name" value="{{ subject.name }}" required>
+            <button type="submit">Edit</button>
+        </form>
+        <form method="POST" action="{{ url_for('admin.delete_subject', subject_id=subject.id) }}">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+

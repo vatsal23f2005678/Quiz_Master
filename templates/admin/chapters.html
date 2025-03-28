@@ -1,0 +1,32 @@
+<h2>Manage Chapters</h2>
+
+<form method="POST" action="{{ url_for('admin.add_chapter') }}">
+    <input type="text" name="name" placeholder="Enter Chapter Name" required>
+    <select name="subject_id">
+        {% for subject in subjects %}
+        <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add Chapter</button>
+</form>
+
+<ul>
+    {% for chapter in chapters %}
+    <li>
+        {{ chapter.name }} ({{ chapter.subject.name }})
+        <form method="POST" action="{{ url_for('admin.edit_chapter', chapter_id=chapter.id) }}">
+            <input type="text" name="name" value="{{ chapter.name }}" required>
+            <select name="subject_id">
+                {% for subject in subjects %}
+                <option value="{{ subject.id }}" {% if subject.id == chapter.subject_id %}selected{% endif %}>{{ subject.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Edit</button>
+        </form>
+        <form method="POST" action="{{ url_for('admin.delete_chapter', chapter_id=chapter.id) }}">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+

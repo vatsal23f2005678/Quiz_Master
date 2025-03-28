@@ -1,0 +1,34 @@
+
+<h2>Quiz</h2>
+
+<!-- Debugging Section -->
+<p><strong>Debug Info:</strong></p>
+<p>Chapter ID: {{ chapter_id }}</p>
+<p>Questions Count: {{ questions | length }}</p>
+
+<!-- Check if questions exist -->
+{% if questions %}
+    <form method="POST" action="{{ url_for('quiz.submit_quiz') }}">
+        <input type="hidden" name="chapter_id" value="{{ chapter_id }}">
+        
+        {% for question in questions %}
+        <div>
+            <p>{{ loop.index }}. {{ question.question_text }}</p>
+            
+            <!-- Debugging print for questions -->
+            <p><em>Question ID: {{ question.id }}</em></p>
+
+            <input type="radio" name="question_{{ question.id }}" value="A"> {{ question.a }}<br>
+            <input type="radio" name="question_{{ question.id }}" value="B"> {{ question.b }}<br>
+            <input type="radio" name="question_{{ question.id }}" value="C"> {{ question.c }}<br>
+            <input type="radio" name="question_{{ question.id }}" value="D"> {{ question.d }}<br>
+        </div>
+        {% endfor %}
+
+        <button type="submit">Submit</button>
+    </form>
+{% else %}
+    <p style="color: red;">No questions found for this chapter.</p>
+{% endif %}
+
+

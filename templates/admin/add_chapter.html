@@ -1,0 +1,14 @@
+<h2>Add Chapter</h2>
+<form method="POST" action="{{ url_for('admin.add_chapter') }}">
+    <label for="subject_id">Select Subject:</label>
+    <select name="subject_id" required>
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="name">Chapter Name:</label>
+    <input type="text" name="name" required>
+
+    <button type="submit">Add Chapter</button>
+</form>

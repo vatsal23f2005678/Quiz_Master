@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard!</h1>
+    <p>You are successfully logged in.</p>
+    
+    <h3>Select a Subject</h3>
+    <ul>
+        {% for subject in subjects %}
+            <li>
+                <strong>{{ subject.name }}</strong>
+                <ul>
+                    {% for chapter in subject.chapters %}
+                        <li>
+                            <a href="{{ url_for('quiz.start_quiz', chapter_id=chapter.id) }}">
+                                {{ chapter.name }}
+                            </a> (ID: {{ chapter.id }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('main.logout') }}">Logout</a>
+</body>
+</html>

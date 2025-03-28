@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h2>Quiz</h2>
+<form method="POST" action="{{ url_for('quiz.submit_quiz', chapter_id=chapter_id) }}">
+    {% for question in questions %}
+        <div>
+            <p><strong>{{ loop.index }}. {{ question.question_text }}</strong></p>
+            <label><input type="radio" name="question_{{ question.id }}" value="a"> {{ question.a }}</label><br>
+            <label><input type="radio" name="question_{{ question.id }}" value="b"> {{ question.b }}</label><br>
+            <label><input type="radio" name="question_{{ question.id }}" value="c"> {{ question.c }}</label><br>
+            <label><input type="radio" name="question_{{ question.id }}" value="d"> {{ question.d }}</label><br>
+        </div>
+    {% endfor %}
+    <button type="submit">Submit Quiz</button>
+</form>
+{% endblock %}

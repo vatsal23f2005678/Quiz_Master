@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+{% block content %}
+<h2>Select a Subject</h2>
+<ul>
+    {% for subject in subjects %}
+    <li><a href="{{ url_for('quiz.quiz_home', subject_id=subject.id) }}">{{ subject.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
